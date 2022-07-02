@@ -1,0 +1,15 @@
+*.DS_Store
+*/.DS_Store
+
+*/*.xlsx
+
+*DailyLog
+/.vscode
+/build/
+/old/
+/_tpr_/
+
+# Visual Studio
+.vs/
+out/
+install/

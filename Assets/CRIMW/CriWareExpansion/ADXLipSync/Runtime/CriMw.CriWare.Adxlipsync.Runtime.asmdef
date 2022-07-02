@@ -1,0 +1,10 @@
+{
+    "name": "CriMw.CriWare.Adxlipsync.Runtime",
+    "references": [
+        "CriMw.CriWare.Runtime",
+        "UnityEditor.UI",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

@@ -1,0 +1,10 @@
+{
+    "name": "CriMw.CriWare.Vp9.Runtime",
+    "references": [
+        "CriMw.CriWare.Runtime",
+        "UnityEditor.UI",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
