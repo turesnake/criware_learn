@@ -1046,6 +1046,7 @@ public static class CriAtomEx
 		return snapshotName;
 	}
 
+
 	/**
 	 * Attaching the DSP bus settings
 	 	添加 dsp 总线设置
@@ -1060,7 +1061,6 @@ public static class CriAtomEx
 			CriAtomEx.RegisterAcf("Sample.acf");
 			// 应用DSP总线设置
 			CriAtomEx.AttachDspBusSetting("DspBusSetting_0");
-	 
 
 	 	This function is a return-on-complete function. (完成时返回 函数)
 
@@ -1108,11 +1108,15 @@ public static class CriAtomEx
 
 	/**
 		Applies the DSP bus snapshot
-		适用 dsp 总线快照
+		切换到一个新的 dsp 总线快照;
+
+		使用案例: 当设备连接了外部耳机时, 调用本函数, 将声音切换为 单声道 或 双声道;
+		此处的参数 snapshot_name 通常由 音效人员提供;
 
 		参数:
 			snapshot_name -- DSP bus snapshot name
 			time_ms       -- The time (in milliseconds) until the snapshot is fully reflected  快照完全反射之前的时间（毫秒）
+							 若想立即切换, 可直接写 0;
 
 		Calling this function changes the snapshot parameters.
 		It takes time_ms milliseconds for the change to complete.

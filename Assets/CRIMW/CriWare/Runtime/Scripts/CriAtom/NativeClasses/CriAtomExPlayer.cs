@@ -431,7 +431,7 @@ public class CriAtomExPlayer : CriDisposable
 		Sets the sound data (Cue ID specified)
 
 	 * <param name='acb'>ACB object</param>
-	 * <param name='id -- Cue ID
+	 * <param name='id' > -- Cue ID </param>
 	 
 	 * Associates the Cue ID with the AtomExPlayer.<br/>
 	 * After specifying the Cue ID using this function, when you start the playback

@@ -47,37 +47,44 @@ public class CriAtomOutputDeviceObserver : CriMonoBehaviour
 {
 	
 	/**
-	 * <summary>Type of audio output device</summary>
-	 * <remarks>
-	 * <para header='Description'>Types of device to which audio is output from the application.</para>
-	 * </remarks>
-	 * <seealso cref='CriAtomOutputDeviceObserver::DeviceType'/>
+	 * Types of device to which audio is output from the application.
+
 	 */
-	public enum OutputDeviceType {
-		BuiltinSpeaker,     /**< Internal Speaker */
-		WiredDevice,        /**< Wired device (wired headset, etc.) */
-		WirelessDevice,     /**< Wireless device (Bluetooth headset, etc.) */
+	public enum OutputDeviceType 
+	{
+		BuiltinSpeaker,     /**< Internal Speaker  内置扬声器 */
+		WiredDevice,        /**< Wired device (wired headset, etc.) 有线设备 */
+		WirelessDevice,     /**< Wireless device (Bluetooth headset, etc.) 无线设备 */
 	}
 
 
 	/**
-	 * <summary>Connection state change callback delegate type</summary>
-	 * <param name='isConnected'>Output device connection status (false = disconnected, true = connected)</param>
-	 * <param name='deviceType'>Output device type</param>
-	 * <remarks>
-	 * <para header='Description'>This is the type of the callback function that is called when the connection status of the audio output device changes.</para>
-	 * </remarks>
+	 * Connection state change callback delegate type;
+	 * This is the type of the callback function that is called when the connection status of the audio output device changes.
+	 	当 audio output device 的连接状态发生变化时, 将调用的回调函数 的类型;
+
+	 * <param name='isConnected'>   Output device connection status (false = disconnected, true = connected)</param>
+	 * <param name='deviceType'>    Output device type           </param>
+
 	 * <seealso cref='CriAtomOutputDeviceObserver::OnDeviceConnectionChanged'/>
 	 */
 	public delegate void DeviceConnectionChangeCallback(bool isConnected, OutputDeviceType deviceType);
 
 
 	/**
-	 * <summary>Connection state change callback delegate</summary>
-	 * <remarks>
-	 * <para header='Description'>This is a callback function that is called when the connection status of the audio output device changes.<br/>
-	 * Called from the application's main thread.</para>
-	 * </remarks>
+	 * Connection state change callback delegate
+	
+	 * This is a callback function that is called when the connection status of the audio output device changes.
+	 * Called from the application's main thread.
+	 ---
+	 从 app 的主线程调用;
+
+		按照官方技术人员的描述, 此 event 的两个参数中, 只需监听参数2: deviceType 就可以了;
+		当设备从 外放 -> 有线耳机, (或者从 有线耳机 -> 外放) 的那一刻, 只会触发一次 event, 
+		此时它提供的参数 deviceType 就表示 在新的状态中, 使用的设备类型;
+
+		参数1: isConnected 是个历史遗留问题, 是个旧参数, true 表示已经连接了 有线/无线耳机, false 表示 外放模式;
+	
 	 * <seealso cref='CriAtomExOutputDeviceObserver::DeviceConnectionChangeCallback'/>
 	 */
 	public static event DeviceConnectionChangeCallback OnDeviceConnectionChanged {
@@ -92,13 +99,16 @@ public class CriAtomOutputDeviceObserver : CriMonoBehaviour
 		}
 	}
 
+
 	/**
-	 * <summary>Gets device connection status</summary>
-	 * <returns>Whether connected (false = disconnected, true = connected)</returns>
-	 * <remarks>
-	 * <para header='Description'>Returns whether an audio output device is connected to the machine.<br/>
-	 * Returns true if the output destination is a device other than the internal speaker.</para>
-	 * </remarks>
+	 * Gets device connection status
+	 * Whether connected (false = disconnected, true = connected)
+
+	 猜测: 如果外联设备类型为 BuiltinSpeaker, 也是要返回 false 的;
+	 ( 可能是因为, BuiltinSpeaker 不属于外连设备 ) 
+	
+	 * Returns whether an audio output device is connected to the machine.
+	 * Returns true if the output destination is a device other than the internal speaker.
 	 */
 	public static bool IsDeviceConnected {
 		get {
@@ -115,14 +125,17 @@ public class CriAtomOutputDeviceObserver : CriMonoBehaviour
 		}
 	}
 
+
+
 	/**
-	 * <summary>Gets the output device type</summary>
-	 * <returns>Output device type</returns>
-	 * <remarks>
-	 * <para header='Description'>Gets the type of the current audio output device.</para>
-	 * </remarks>
+	 * Gets the output device type
+	 * Gets the type of the current audio output device.
+
+	返回:
+	Output device type	
 	 */
-	public static OutputDeviceType DeviceType {
+	public static OutputDeviceType DeviceType 
+	{
 		get {
 			if (instance == null) {
 				return OutputDeviceType.BuiltinSpeaker;
@@ -136,6 +149,8 @@ public class CriAtomOutputDeviceObserver : CriMonoBehaviour
 #endif
 		}
 	}
+
+	// =============================================== 下面的几乎不用看 ====================================================== //
 
 	#region Internal Members
 	[SerializeField] bool dontDestroyOnLoad = false;

@@ -790,7 +790,8 @@ public class CriAtomSource : CriMonoBehaviour
 	}
 
 	/**
-	 * <summary>Starts playing the Cue with the specified Cue name.</summary>
+	 * Starts playing the Cue with the specified Cue name.
+	 
 	 * <param name='cueName'>Cue name</param>
 	 * <returns>Playback ID</returns>
 	 * <remarks>
